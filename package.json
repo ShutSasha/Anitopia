@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"yarn run dev:client\" \"yarn run dev:server\"",
-    "lint": "npx eslint client server",
-    "lint:fix": "npx eslint client server --fix",
-    "prepare": "husky",
+    "lint": "npx eslint ./packages/client ./packages/server",
+    "lint:fix": "npx eslint ./packages/client ./packages/server --fix",
+    "prepare": "husky install",
     "dev:client": "yarn --cwd ./packages/client run dev",
     "dev:server": "yarn --cwd ./packages/server run dev"
   },
