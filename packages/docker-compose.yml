@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "3030:3030"
+    depends_on:
+      - data-service
+
+  data-service:
+    build:
+      context: ./data-service
+    ports:
+      - "8080:8080"
