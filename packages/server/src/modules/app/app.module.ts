@@ -7,7 +7,7 @@ import { ConfigModule } from '@nestjs/config'
   imports: [
     ConfigModule.forRoot({ envFilePath: `.env.${process.env.NODE_ENV}` }),
     MongooseModule.forRoot(
-      `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@dev-cluster.vmryai6.mongodb.net/?retryWrites=true&w=majority&appName=dev-cluster`,
+      `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@dev-cluster.vmryai6.mongodb.net/anitopia-db?retryWrites=true&w=majority&appName=dev-cluster`,
     ),
     UsersModule,
   ],
