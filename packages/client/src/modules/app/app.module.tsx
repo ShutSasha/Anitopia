@@ -1,7 +1,8 @@
 import React from 'react'
+import Router from '~router/router'
 
 const App = (): JSX.Element => {
-  return <div>App</div>
+  return <Router />
 }
 
 export default App
