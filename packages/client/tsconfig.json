@@ -18,18 +18,50 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "composite": true,
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "paths": {
-      "~assets/*": ["src/assets/*"],
-      "~modules/*": ["src/modules/*"],
-      "~router/*": ["src/router/*"],
-      "~shared/*": ["src/shared/*"],
-      "~store/*": ["src/store/*"],
-      "~typings/*": ["src/typings/*"],
-      "~/*": ["src/*"],
-      "~joi-schemas/*": ["src/shared/joi-schemas/*"]
+      "~assets/*": [
+        "src/assets/*"
+      ],
+      "~modules/*": [
+        "src/modules/*"
+      ],
+      "~router/*": [
+        "src/router/*"
+      ],
+      "~shared/*": [
+        "src/shared/*"
+      ],
+      "~store/*": [
+        "src/store/*"
+      ],
+      "~typings/*": [
+        "src/typings/*"
+      ],
+      "~/*": [
+        "src/*"
+      ],
+      "~joi-schemas/*": [
+        "src/shared/joi-schemas/*"
+      ],
+      "~services/*": [
+        "src/services/*"
+      ],
+      "~stores/*": [
+        "src/stores/*"
+      ]
     }
   },
-  "include": ["./src/**/*", "./vite.config.ts"],
-  "exclude": ["./node_modules", "test", "./dist", "**/*spec.ts"]
+  "include": [
+    "./src/**/*",
+    "./vite.config.ts"
+  ],
+  "exclude": [
+    "./node_modules",
+    "test",
+    "./dist",
+    "**/*spec.ts"
+  ]
 }
