@@ -6,6 +6,7 @@ import { User, UserDocument } from './users.schema'
 import { ValidationPipe } from '../../pipes/validation.pipe'
 import { RolesGuard } from '../roles/roles.guard'
 import { Roles } from '../roles/roles-auth.decorator'
+import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 
 @ApiTags('users')
 @Controller('users')
@@ -15,7 +16,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Get all users ' })
   @ApiResponse({ status: 200, type: [User] })
   @Roles('USER')
-  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   getAllUser(): Promise<UserDocument[]> {
     return this.usersService.getAllUsers()
