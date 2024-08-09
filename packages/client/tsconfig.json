@@ -29,7 +29,6 @@
       "~/*": ["src/*"],
       "~joi-schemas/*": ["src/shared/joi-schemas/*"],
       "~services/*": ["src/services/*"],
-      "~stores/*": ["src/stores/*"],
       "~config/*": ["src/config/*"],
       "~types/*": ["src/types/*"]
     }
