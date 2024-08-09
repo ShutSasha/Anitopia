@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/css": "^11.13.0",
+    "axios": "^1.7.3",
+    "final-form": "^4.20.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-final-form": "^6.5.9",
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
+    "@types/node": "^22.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
