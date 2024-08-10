@@ -30,7 +30,9 @@
       "~joi-schemas/*": ["src/shared/joi-schemas/*"],
       "~services/*": ["src/services/*"],
       "~config/*": ["src/config/*"],
-      "~types/*": ["src/types/*"]
+      "~types/*": ["src/types/*"],
+      "~reducers/*": ["src/store/reducers/*"],
+      "~hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["./src/**/*", "./vite.config.ts"],
