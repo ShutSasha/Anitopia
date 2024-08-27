@@ -12,7 +12,12 @@ async function bootstrap(): Promise<void> {
   app.setGlobalPrefix('api')
 
   app.enableCors({
+    // allows get cookies, headers, etc from requests others servers
     credentials: true,
+
+    // allows make requests to this server from any server/client source
+    // origin: true - good for development
+    //but for production better to use smth like that - origin: ['https://your-allowed-domain.com'],
     origin: true,
   })
 

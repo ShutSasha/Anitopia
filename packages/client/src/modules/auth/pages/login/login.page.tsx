@@ -2,22 +2,37 @@ import React, { ReactElement } from 'react'
 import { ILogin } from '~/types/auth/login.type'
 import { Form } from '~shared/components/form/form.component'
 import { Input } from '~shared/components/input/input.component'
-import AuthService from '~/services/auth.service'
-import UserService from '~/services/user.service'
 import { siteColors, useTheme } from '~shared/styles/theme.context'
 import { buttonStyles } from './login.styles'
+import { useLoginMutation } from '~store/api/authApi'
+import { useAppDispatch } from '~store/store'
+import { login as loginAction } from '~store/features/userSlice'
+import { useLazyGetUsersQuery } from '~store/api/userApi'
 
-const authService = new AuthService()
-const userService = new UserService()
+type LoginResponse = {
+  data: {
+    message: string
+    token: {
+      accessToken: string
+    }
+  }
+}
 
 export const Login = (): ReactElement => {
   const { theme, toggleTheme } = useTheme()
+  const [login] = useLoginMutation()
+  const [triggerGetUsers] = useLazyGetUsersQuery()
+  const dispatch = useAppDispatch()
+
+  // const {data, isSuccess} = useGetSototamQuery()
 
   const handleSubmitForm = async (loginCredentials: ILogin): Promise<void> => {
     try {
-      const { data: loginResponse } = await authService.login(loginCredentials)
-
-      localStorage.setItem('accessToken', loginResponse.token.accessToken)
+      // const { data: loginResponse } = await authService.login(loginCredentials)
+      const { data: loginResponse } = (await login(loginCredentials)) as LoginResponse
+      dispatch(loginAction(loginResponse.token.accessToken))
+      console.log('login succes', loginResponse)
+      // localStorage.setItem('accessToken', loginResponse.token.accessToken)
     } catch (error) {
       console.error(error)
     }
@@ -25,8 +40,8 @@ export const Login = (): ReactElement => {
 
   const handleGetUsers = async (): Promise<void> => {
     try {
-      const response = await userService.getAllUsers()
-      console.log(response)
+      const { data } = await triggerGetUsers()
+      console.log(data)
     } catch (error) {
       console.error(error)
     }

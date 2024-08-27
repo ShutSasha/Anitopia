@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/css": "^11.13.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "async-mutex": "^0.5.0",
     "axios": "^1.7.3",
     "final-form": "^4.20.10",
     "react": "^18.3.1",

@@ -40,8 +40,16 @@ export class AuthController {
   }
 
   @Post('/refresh')
-  async refresh(@Req() req: Request): Promise<Record<string, string>> {
-    const refreshToken = req.cookies['refreshToken']
-    return this.authService.refreshTokens(refreshToken)
+  async refresh(@Req() req: Request, @Res() res: Response): Promise<void> {
+    const refreshTokenFromReq = req.cookies['refreshToken']
+
+    const { accessToken, refreshToken } = await this.authService.refreshTokens(refreshTokenFromReq)
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    })
+    res.send({ message: 'Tokens updated', token: { accessToken } })
   }
 }
