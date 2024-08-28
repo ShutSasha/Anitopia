@@ -40,7 +40,7 @@ interface IThemeContext {
 }
 
 const defaultContextValue: IThemeContext = {
-  theme: 'whiteTheme',
+  theme: 'blackTheme',
   toggleTheme: () => {},
 }
 
@@ -51,10 +51,10 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }): JSX.Element => {
-  const [theme, setTheme] = useState<keyof ISiteColors>('whiteTheme')
+  const [theme, setTheme] = useState<keyof ISiteColors>('blackTheme')
 
   useEffect(() => {
-    const savedTheme = (localStorage.getItem('theme') as keyof ISiteColors) || 'whiteTheme'
+    const savedTheme = (localStorage.getItem('theme') as keyof ISiteColors) || 'blackTheme'
     setTheme(savedTheme)
     document.body.style.backgroundColor = siteColors[savedTheme].backdrop
   }, [])
