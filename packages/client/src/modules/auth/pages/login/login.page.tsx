@@ -3,11 +3,12 @@ import { ILogin } from '~/types/auth/login.type'
 import { Form } from '~shared/components/form/form.component'
 import { Input } from '~shared/components/input/input.component'
 import { siteColors, useTheme } from '~shared/styles/theme.context'
-import { buttonStyles } from './login.styles'
+import { Button } from './login.styles'
 import { useLoginMutation } from '~store/api/authApi'
 import { useAppDispatch } from '~store/store'
 import { login as loginAction } from '~store/features/userSlice'
 import { useLazyGetUsersQuery } from '~store/api/userApi'
+import { AppWrapper } from '~shared/components/app-wrapper/app-wrapper.component'
 
 type LoginResponse = {
   data: {
@@ -48,7 +49,7 @@ export const Login = (): ReactElement => {
   }
 
   return (
-    <div>
+    <AppWrapper>
       <Form handleSubmitForm={handleSubmitForm}>
         <Input name='email' placeholder='email' type='email' />
         <Input name='password' placeholder='password' type='password' />
@@ -69,8 +70,8 @@ export const Login = (): ReactElement => {
       >
         asdasd
         <p style={{ color: siteColors[theme].textSecondary }}>textSecondary</p>
-        <button className={buttonStyles(theme)}>text</button>
+        <Button theme={theme}>text</Button>
       </div>
-    </div>
+    </AppWrapper>
   )
 }

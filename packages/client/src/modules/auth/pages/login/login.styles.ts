@@ -1,10 +1,14 @@
-import { css } from '@emotion/css'
+import styled from 'styled-components'
 import { ISiteColors, siteColors } from '~shared/styles/theme.context'
 
-export const buttonStyles = (theme: keyof ISiteColors): string => css`
-  background-color: ${siteColors[theme].main};
-  color: ${siteColors[theme].textPrimary};
-  border: 2px solid ${theme === 'whiteTheme' ? '#000' : '#EDEDED'};
+interface ButtonProps {
+  theme: keyof ISiteColors
+}
+
+export const Button = styled.button<ButtonProps>`
+  background-color: ${({ theme }): string => siteColors[theme].main};
+  color: ${({ theme }): string => siteColors[theme].textPrimary};
+  border: 2px solid ${({ theme }): string => (theme === 'whiteTheme' ? '#000' : '#EDEDED')};
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -13,7 +17,7 @@ export const buttonStyles = (theme: keyof ISiteColors): string => css`
     color 0.3s ease;
 
   &:hover {
-    background-color: ${siteColors[theme].focusing};
-    color: ${siteColors[theme].textPrimary};
+    background-color: ${({ theme }): string => siteColors[theme].focusing};
+    color: ${({ theme }): string => siteColors[theme].textPrimary};
   }
 `

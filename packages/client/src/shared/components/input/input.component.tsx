@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import { Field } from 'react-final-form'
-import { _input } from './input.styles'
+import { Input as InputStyled } from './input.styles'
 
 interface InputProps {
   name: string
@@ -17,7 +17,7 @@ export const Input: FC<InputProps> = ({ name, labelText, placeholder = '', type 
       render={({ input }) => (
         <div>
           {labelText && <label>{labelText}</label>}
-          <input className={_input} placeholder={placeholder} {...input} type={type} />
+          <InputStyled placeholder={placeholder} {...input} type={type} />
         </div>
       )}
     />
