@@ -1,56 +1,62 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
 
-interface BurgerMenuProps {
+interface StyledBurgerMenu {
+  $isopen: boolean
   margin?: string
   padding?: string
 }
 
-const StyledBurger = styled.span`
-  position: absolute;
-  top: 45%;
-  display: block;
-  height: 2px;
-  width: 28px;
-  background: white; // переделать тут на theme
+interface BurgerMenuProps extends StyledBurgerMenu {
+  handleClick: () => void
+}
 
-  &::before {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    content: '';
-    height: 2px;
-    width: 28px;
-    background: white; // переделать тут на theme
-  }
-
-  &::after {
-    position: absolute;
-    top: -10px;
-    left: 0;
-    content: '';
-    height: 2px;
-    width: 28px;
-    background: white; // переделать тут на theme
-  }
-
-  &:hover {
-  }
-`
-
-const BurgerWrapper = styled.div<BurgerMenuProps>`
+const Toggle = styled.button<StyledBurgerMenu>`
   margin: ${({ margin }): string => margin || '0'};
   padding: ${({ padding }): string => padding || '0'};
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 20px;
   position: relative;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: transparent;
+  overflow: hidden;
+  border: none;
+
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    transition: all 0.3s ease-out;
+  }
+
+  :nth-child(1) {
+    top: ${({ $isopen }): string => ($isopen ? '' : '0')};
+    transform: rotate(${({ $isopen }): string => ($isopen ? '45deg' : '0')});
+  }
+
+  :nth-child(2) {
+    transition: all 0.25s ease-out;
+    visibility: ${({ $isopen }): string => ($isopen ? 'hidden' : 'visible')};
+    opacity: ${({ $isopen }): string => ($isopen ? '0' : '1')};
+  }
+
+  :nth-child(3) {
+    bottom: ${({ $isopen }): string => ($isopen ? '' : '0')};
+    transform: rotate(${({ $isopen }): string => ($isopen ? '-45deg' : '0')});
+  }
 `
 
-export const BurgerMenu: FC<BurgerMenuProps> = (props): JSX.Element => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({ handleClick, ...props }): JSX.Element => {
   return (
-    <BurgerWrapper {...props}>
-      <StyledBurger />
-    </BurgerWrapper>
+    <Toggle {...props} onClick={handleClick}>
+      <span></span>
+      <span></span>
+      <span></span>
+    </Toggle>
   )
 }

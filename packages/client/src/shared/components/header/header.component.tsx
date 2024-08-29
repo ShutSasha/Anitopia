@@ -1,16 +1,21 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { useTheme } from '~shared/styles/theme.context'
 import { Flex, FlexWithBackground } from '../flex/flex.component'
 import { Logo } from '../logo/logo.component'
 import { BurgerMenu } from '../burger-menu/burger-menu.component'
 
 export const Header: FC = (): JSX.Element => {
+  const [isBurgerOpen, setBurgerOpen] = useState<boolean>(false)
   const { theme } = useTheme()
+
+  const handleBurgerOpen = (): void => {
+    setBurgerOpen((prev) => !prev)
+  }
 
   return (
     <FlexWithBackground theme={theme} padding='10px 20px'>
       <Flex align='center'>
-        <BurgerMenu margin='0 24px 0 0' />
+        <BurgerMenu $isopen={isBurgerOpen} handleClick={handleBurgerOpen} margin='0 24px 0 0' />
         <Logo />
       </Flex>
       <Flex>
