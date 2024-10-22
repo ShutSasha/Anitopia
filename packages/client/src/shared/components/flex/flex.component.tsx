@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { ISiteColors, siteColors } from '~shared/styles/theme.context'
 
 interface StyledFlexProps {
-  direction?: string
-  align?: string
-  justify?: string
-  margin?: string
-  padding?: string
+  $direction?: string
+  $align?: string
+  $justify?: string
+  $margin?: string
+  $padding?: string
 }
 
 interface FlexProps extends StyledFlexProps {
@@ -21,15 +21,17 @@ interface FlexWithBackgroundProps extends FlexProps {
 
 const StyledFlex = styled.div<StyledFlexProps>`
   display: flex;
-  flex-direction: ${({ direction }): string => direction || 'row'};
-  align-items: ${({ align }): string => align || 'stretch'};
-  justify-content: ${({ justify }): string => justify || 'flex-start'};
-  margin: ${({ margin }): string => margin || '0'};
-  padding: ${({ padding }): string => padding || '0'};
+  flex-direction: ${({ $direction }): string => $direction || 'row'};
+  align-items: ${({ $align }): string => $align || 'stretch'};
+  justify-content: ${({ $justify }): string => $justify || 'flex-start'};
+  margin: ${({ $margin }): string => $margin || '0'};
+  padding: ${({ $padding }): string => $padding || '0'};
 `
 
 const StyledFlexWithBackground = styled(StyledFlex)<{ theme: keyof ISiteColors; background?: string }>`
-  backgroudn: ${({ theme, background }): string => (background ? background : siteColors[theme].main)};
+  background: ${({ theme, background }): string => {
+    return background ? background : (siteColors[theme] as ISiteColors[keyof ISiteColors]).main
+  }};
 `
 
 export const Flex: FC<FlexProps> = ({ children, ...styles }): JSX.Element => {

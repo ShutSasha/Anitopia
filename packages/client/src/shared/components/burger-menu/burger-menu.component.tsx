@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 interface StyledBurgerMenu {
   $isopen: boolean
-  margin?: string
-  padding?: string
+  $margin?: string
+  $padding?: string
 }
 
 interface BurgerMenuProps extends StyledBurgerMenu {
@@ -12,8 +12,8 @@ interface BurgerMenuProps extends StyledBurgerMenu {
 }
 
 const Toggle = styled.button<StyledBurgerMenu>`
-  margin: ${({ margin }): string => margin || '0'};
-  padding: ${({ padding }): string => padding || '0'};
+  margin: ${({ $margin }): string => $margin || '0'};
+  padding: ${({ $padding }): string => $padding || '0'};
   width: 24px;
   height: 20px;
   position: relative;

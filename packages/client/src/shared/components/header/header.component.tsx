@@ -13,9 +13,9 @@ export const Header: FC = (): JSX.Element => {
   }
 
   return (
-    <FlexWithBackground theme={theme} padding='10px 20px'>
-      <Flex align='center'>
-        <BurgerMenu $isopen={isBurgerOpen} handleClick={handleBurgerOpen} margin='0 24px 0 0' />
+    <FlexWithBackground theme={theme} $padding='10px 20px' $align='center' $justify='space-between'>
+      <Flex $align='center'>
+        <BurgerMenu $isopen={isBurgerOpen} handleClick={handleBurgerOpen} $margin='0 24px 0 0' />
         <Logo />
       </Flex>
       <Flex>
@@ -24,7 +24,7 @@ export const Header: FC = (): JSX.Element => {
         <div>3</div>
         <div>4</div>
       </Flex>
-      <div className='global-chat'></div>
+      <div className='global-chat'>notif,user,chat</div>
     </FlexWithBackground>
   )
 }
